@@ -13,9 +13,9 @@
 
 
 $dbServerName = "eu-cdbr-west-01.cleardb.com";
-$dbUsername = "b8453cc96ebe7a";
-$dbPassword = "c53d4951";
-$dbName = "heroku_e9dd30209e9a3c9";
+$dbUsername = "b6af1cb84a5a91";
+$dbPassword = "ab1d49c3";
+$dbName = "heroku_e18fbac34689345";
 
 // create connection
 $db = new mysqli($dbServerName, $dbUsername, $dbPassword, $dbName);

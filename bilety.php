@@ -1,43 +1,5 @@
 <?php
-session_start();
-
-//if (!empty($_GET['locale'])) {
-
-$api_key = 'iv125947694098261287788477236656';
-
-//    $locale = $_GET['locale'];
-$locale_url = 'http://partners.api.skyscanner.net/apiservices/reference/v1.0/countries/pl-PL?apiKey=' . $api_key;
-$locale_json = file_get_contents($locale_url);
-$locale_array = json_decode($locale_json, TRUE);
-
-
-//Retrieve the cheapest quotes from our cache prices.
-//GET /browsequotes/v1.0/{country}/{currency}/{locale}/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}
-//$quotes_url = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/PL/USD/pl-PL/PL/CN/2017-06-12?apiKey=' . $api_key;
-$country = 'PL';
-$currency = $_GET['currency'];
-$locale = 'pl-PL';
-$originPlace = $_GET['origin'];
-$destinationPlace = $_GET['destination'];
-$outboundPartialDate = $_GET['outboundPartialDate'];
-$inboundPartialDate = '';
-$passengers = $_GET['passengers'];
-
-$quotes_url = 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/'
-    . $country . '/' . $currency . '/' . $locale . '/' . $originPlace . '/' . $destinationPlace . '/' . $outboundPartialDate . '?apiKey=' . $api_key;
-$quotes_json = file_get_contents($quotes_url);
-$quotes_array = json_decode($quotes_json, true);
-
-function find($quotes_array, $id)
-{
-    foreach ($quotes_array['Places'] as $place) {
-        if ($place['PlaceId'] == $id) {
-            return $place['CityName'] . ' (' . $place['IataCode'] . ')';
-        }
-    }
-    return "Not Found";
-}
-
+include 'api.php';
 ?>
 
 <!DOCTYPE html>
@@ -229,27 +191,54 @@ function find($quotes_array, $id)
             <ul class="collection with-header">
                 <!--                    <div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>-->
                 <?php
-                if (empty($quotes_array['Quotes']) && (!is_null($quotes_array))) {
+                if (empty($quotes_array['Quotes'])) {
                     echo '<div>404 Nic nie znaleziono</div>';
                 }
                 $a = 0;
                 foreach ($quotes_array["Quotes"] as $quote) {
                     if ($a == 5)
                         break;
-//                        price
-                    echo '<li class="collection-item"><div>Cena: ' . $quote['MinPrice'] * $passengers . ' ' . $currency . '<br/>';
-//                        direct
+
                     $direct = $quote['Direct'] ? 'TAK' : 'NIE';
-                    echo 'Bezpośredni: ' . $direct . ' <br/>';
-//                        carrier name
+                    $minPrice = $quote['MinPrice'] * $passengers;
                     $carrier_id = $quote['OutboundLeg']['CarrierIds'][0];
+                    $departureDate = $quote['OutboundLeg']['DepartureDate'];
+
+                    $carrierName = "Not found";
 
                     foreach ($quotes_array["Carriers"] as $carrier) {
                         if ($carrier['CarrierId'] == $carrier_id) {
-                            echo 'Przewoźnik: ' . $carrier['Name'] . ' ';
-                        }
+                            $carrierName =  $carrier['Name'];
+                        } else echo '';
                     }
-                    echo '<a href="#!" class="secondary-content">WYBIERZ<i class="material-icons">send</i></a></div>';
+
+
+//                        price
+                    echo '<li class="collection-item"><div>Cena: ' . $minPrice . ' ' . $currency . '<br/>';
+                    echo '
+                        <form action="order.php">
+                        
+                        
+                        <input type="hidden" name="minPrice" value="'. $minPrice .'"/> 
+                        <input type="hidden" name="carrierName" value="'. $carrierName .'"/> 
+                        <input type="hidden" name="departureDate" value="'. $departureDate .'"/> 
+                        
+                        
+                        <button name="quoteId" value="' .$quote['QuoteId'].'" class="secondary-content">WYBIERZ
+                        
+                        <i class="material-icons">send</i></button>
+                     
+                    </form></div>';
+//                        direct
+                    echo 'Bezpośredni: ' . $direct . ' <br/>';
+//                        carrier name
+
+                    foreach ($quotes_array["Carriers"] as $carrier) {
+                        if ($carrier['CarrierId'] == $carrier_id) {
+                            echo 'Przewoźnik: ' . $carrierName . ' ';
+                        } else echo '';
+                    }
+
                     $a += 1;
                 }
                 ?>

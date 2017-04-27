@@ -12,16 +12,18 @@
     $password = htmlspecialchars($password);
     $login = trim($login);
     $password = trim($password);
-    include ("bd.php");
+    include("bd.php");
  
-$result = mysqli_query($db,"SELECT * FROM users WHERE login='$login'");
+$result = mysqli_query($db,"SELECT * FROM customers WHERE login='$login'");
     $myrow = mysqli_fetch_array($result);
     if (empty($myrow['password']))
        {
        exit ("Incorrect username or password");
        }
     else {
-    if ($myrow['password']==$password) {$_SESSION['login']=$myrow['login'];$_SESSION['id']=$myrow['id'];
+    if ($myrow['password']==$password) {
+        $_SESSION['login']=$myrow['login'];$_SESSION['id']=$myrow['id'];
+        header('Location: index.php');
     echo "You have successfully entered the site! <a href='index.php'>Strona główna</a>";
     }
     else {

@@ -55,19 +55,20 @@
             exit    ("The password must consist of at least 3 characters and no more than 15 characters.");
             }          
 
-    include ("bd.php");
+    include("bd.php");
 
-    $result =  mysqli_query($db,"SELECT id FROM users WHERE login='$login'");
+    $result =  mysqli_query($db,"SELECT id FROM customers WHERE login='$login'");
     $myrow = mysqli_fetch_array($result);
     if (!empty($myrow['id'])) {
     exit ("Sorry, the login you entered is already registered. Please enter a different login.");
     }
 
-    $result2 = mysqli_query ($db,"INSERT INTO users (login,password,name,last_name,mail,birthday,country,city,address,post_code) 
+    $result2 = mysqli_query ($db,"INSERT INTO customers (login,password,name,last_name,mail,birthday,country,city,address,post_code,) 
         VALUES('$login','$password','$name','$last_name','$mail','$birthday','$country','$city','$address','$post_code')");
     
     if ($result2=='TRUE')
     {
+        header('Location: index.php');
     echo "You are successfully registered! Now you can go to the site. <a href='index.php'>Strona główna</a>";
     }
  else {
