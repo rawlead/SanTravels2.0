@@ -7,12 +7,12 @@ session_start();
     <title>Moje Konto</title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
-    <!--        <!--Import Google Icon Font-->
-    <!--        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-    <!--        <!--Import materialize.css-->
-    <!--        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>-->
-    <!--        <!--Let browser know website is optimized for mobile-->
-    <!--        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
@@ -67,89 +67,95 @@ session_start();
     </div>
 </header>
 <!--==============================Content=================================-->
-<div class="content">
-    <div class="container_12">
-        <?php
-        if ($_SESSION['login']) {
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6">
+<?php
+             if ($_SESSION['login']) {
 
-            echo '<br/><br/><a style="float: right;" href="logout.php"><button class="btnRegister">WYLOGUJ SIĘ</button></a>';
-        } else {
-            echo '
-                <form name="FormLogin" method="post" action="testreg.php" >
-            <table border="0" width="300" align="center" class="demo-table" style="width: 100%">
-                <tr>
-                    <td>Login</td>
-                    <td><input type="text" class="demoInputBox" name="login"</td>
-                </tr>
-                <tr>
-                    <td>Hasło</td>
-                    <td><input type="text" class="demoInputBox" name="password"</td>
-                </tr>
+             echo '<br/><br/><a href="logout.php">
+                <button class="btn right">WYLOGUJ SIĘ</button>
+            </a>';
+             } else {
+             echo '
+            <form name="FormLogin" method="post" action="testreg.php">
+                <div class="input-field">
+                    <input id="username" type="text" class="demoInputBox" name="login"/>
+                    <label for="username">Login</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="text" class="demoInputBox" name="password"/>
+                    <label for="password">Hasło</label>
+                </div>
+                <p>
+                    <input id="terms_login" type="checkbox" name="terms"/>
+                    <label for="terms_login">I accept Terms and Conditions</label>
+                </p>
+                <input type="submit" name="submit" value="Zaloguj" class="btn"/>
+            </form>
+        </div>
+        <div class="col s12 m6 right">
+            <form name="formRegistration" method="post" action="save_user.php">
+                <div class="input-field">
+                    <input id="username_register" type="text" class="demoInputBox" name="login">
+                    <label for="username_register">Nowy Login</label>
+                </div>
+                <div class="input-field">
+                    <input id="first_name_register" type="text" class="demoInputBox" name="name">
+                    <label for="first_name_register">Imię</>
+                </div>
+                <div class="input-field">
+                    <input id="last_name_register" type="text" class="demoInputBox" name="last_name">
+                    <label for="last_name_register">Nazwisko</label>
+                </div>
+                <div class="input-field">
+                    <input id="password_register" type="password" class="demoInputBox" name="password" value="">
+                    <label for="password_register">Hasło</label>
+                </div>
+                <div class="input-field">
+                    <input id="email_register" type="text" class="demoInputBox" name="mail">
+                    <label for="email_register">Email</>
+                </div>
+                <p>
+                    <label for="birthday_register">Data urodzenia:</label>
+                    <input id="birthday_register" name="birthday" class="datepicker" type="date">
+                <p>
+                <div class="input-field">
+                    <input id="country_register" name="country" class="demoInputBox" type="text">
+                    <label for="country_register">Kraj</label>
+                </div>
+                <div class="input-field">
+                    <input id="city_register" name="city" class="demoInputBox" type="text">
+                    <label for="city_register">Miasto</label>
+                </div>
+                <div class="input-field">
+                    <input id="address_register" name="address" class="demoInputBox" type="text">
+                    <label for="address_register">Adres</label>
+                </div>
+                <div class="input-field">
+                    <input id="postcode_register" name="post_code" class="demoInputBox" type="text">
+                    <label for="postcode_register">Kod pocztowy</label>
+                </div>
+                <p>
+                <input id="terms_register" type="checkbox" name="terms">
+                    <label for="terms_register">Accept Terms and Conditions</label>
 
-                <tr>
-                    <td colspan=2>
-                        <input type="checkbox" name="terms"> I accept Terms and Conditions
-                <input type="submit" name="submit" value="Zaloguj" class="btnRegister"></td>
-                </tr>
-            </table>
-        </form>
 
-        <form name="frmRegistration" method="post" action="save_user.php">
-            <table border="0" width="300" align="center" class="demo-table" style="width: 100%">
-                <tr>
-                    <td>Twój login</td>
-                    <td><input type="text" class="demoInputBox" name="login"></td>
-                </tr>
-                <tr>
-                    <td>Imię</td>
-                    <td><input type="text" class="demoInputBox" name="name"></td>
-                </tr>
-                <tr>
-                    <td>Nazwisko</td>
-                    <td><input type="text" class="demoInputBox" name="last_name"></td>
-                </tr>
-                <tr>
-                    <td>Hasło</td>
-                    <td><input type="password" class="demoInputBox" name="password" value=""></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="text" class="demoInputBox" name="mail"></td>
-                </tr>
-                <tr>
-                    <td>Data urodzenia:</td>
-                    <td><input name="birthday" class="demoInputBox" type="date"></td>
-                </tr>
-                <tr>
-                    <td>Kraj</td>
-                    <td><input name="country" class="demoInputBox" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Miasto</td>
-                    <td><input name="city" class="demoInputBox" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Adres</td>
-                    <td><input name="address" class="demoInputBox" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Kod pocztowy</td>
-                    <td><input name="post_code" class="demoInputBox" type="text"></td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        <input type="checkbox" name="terms"> I accept Terms and Conditions <input type="submit" name="submit" value="Załóż konto" class="btnRegister"></td>
-                </tr>
-            </table>
-        </form>
-                ';
+                </p>
+                <input type="submit" name="submit" value="Załóż konto"
+                       class="btn">
+            </form>
+        </div>
+         ';
 
-        }
+         }
 
-        ?>
+?>
 
     </div>
 </div>
+
+
 <style type="text/css">
     .error-message {
         padding: 7px 10px;
@@ -215,5 +221,19 @@ session_start();
         </div>
     </div>
 </footer>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths:true,
+        selectYears: 15
+    });
+</script>
 </body>
 </html>
