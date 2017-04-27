@@ -92,11 +92,11 @@ include 'api.php';
 <div class="container">
     <br/><br/>
     <div class="row">
-        <div class="col s5">
+        <div class="col m5 s12">
             <form action="">
                 <!--                    origin-->
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col m12 s12">
                         <select id="origin" name="origin">
                             <option value="" disabled selected>WYBIERZ KRAJ</option>
                             <?php
@@ -117,7 +117,7 @@ include 'api.php';
                 </div>
                 <!--                destination-->
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col m12 s12">
                         <select id="destination" name="destination">
                             <option value="" disabled selected>WYBIERZ KRAJ</option>
                             <?php
@@ -139,7 +139,7 @@ include 'api.php';
                 </div>
                 <div class="row">
                     <!--     currency-->
-                    <div class="col s2">
+                    <div class="col m2 s12">
                         <p>
                             <input checked name="currency" type="radio" id="zloty" value="PLN"/>
                             <label for="zloty">zł</label>
@@ -154,7 +154,7 @@ include 'api.php';
                         </p>
                     </div>
                     <!--    passengers-->
-                    <div class="input-field col s6 right">
+                    <div class="input-field col m6 s12 right">
                         <select id="passengers" name="passengers">
                             <option value="1" selected>1</option>
                             <option value="2">2</option>
@@ -165,7 +165,7 @@ include 'api.php';
                 </div>
                 <!--                date-->
                 <div class="row">
-                    <div class="col s8">
+                    <div class="col m8 12">
                         <label>WYBIERZ DATE</label>
                         <input type="date" name="outboundPartialDate" class="datepicker"
                                value="<?php
@@ -174,7 +174,7 @@ include 'api.php';
                                }
                                ?>">
                     </div>
-                    <div class="col s4">
+                    <div class="col m4 s12">
                         <br/>
                         <button class="btn waves-effect waves-green">SZUKAJ</button>
                     </div>
@@ -182,11 +182,11 @@ include 'api.php';
             </form>
         </div>
 
-        <div class="col s1"></div>
+        <div class="col m1"></div>
 
 
         <!--    search results-->
-        <div class="col s6">
+        <div class="col m6 s12">
             <br/>
             <ul class="collection with-header">
                 <!--                    <div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>-->
@@ -271,6 +271,7 @@ include 'api.php';
     $(document).ready(function () {
         $('select').material_select();
     });
+
 </script>
 </body>
 </html>
