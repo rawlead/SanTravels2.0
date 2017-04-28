@@ -66,6 +66,8 @@ if (empty($login) or empty($password) or empty($name) or empty($last_name) or em
     exit ("You did not enter all the information, go back and fill in all the fields!");
 }
 
+session_start();
+
 $login = stripslashes($login);
 $login = htmlspecialchars($login);
 $password = stripslashes($password);
@@ -115,10 +117,12 @@ if (!empty($myrow['id'])) {
 
 $result2 = mysqli_query($db, "INSERT INTO customers (login,password,name,last_name,mail,birthday,country,city,address,post_code) 
         VALUES('$login','$password','$name','$last_name','$mail','$birthday','$country','$city','$address','$post_code')");
-
+$myrow2 = mysqli_fetch_array(mysqli_query($db, "SELECT id FROM customers WHERE login='$login'"));
 if ($result2 == 'TRUE') {
-    echo "You are successfully registered! Now you can go to the site. <a href='index.php'>Strona główna</a>";
+    $_SESSION['login']=$myrow2['login'];$_SESSION['id']=$myrow2['id'];
+    echo "You are successfully registered! Now you can log in to the site. <a href='mojekonto.php'>Moje konto</a>";
+
 } else {
-    echo "Error! You are not registred.";
+    echo "Error! You are not registred.  <a href='index.php'>Try again</a>";
 }
 ?>

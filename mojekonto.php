@@ -84,7 +84,7 @@ session_start();
                     <label for="username">Login</label>
                 </div>
                 <div class="input-field">
-                    <input id="password" type="text" class="demoInputBox" name="password"/>
+                    <input id="password" type="password" class="demoInputBox" name="password"/>
                     <label for="password">Hasło</label>
                 </div>
                 <p>
@@ -102,7 +102,7 @@ session_start();
                 </div>
                 <div class="input-field">
                     <input id="first_name_register" type="text" class="demoInputBox" name="name">
-                    <label for="first_name_register">Imię</>
+                    <label for="first_name_register">Imię<label/>
                 </div>
                 <div class="input-field">
                     <input id="last_name_register" type="text" class="demoInputBox" name="last_name">
@@ -114,7 +114,7 @@ session_start();
                 </div>
                 <div class="input-field">
                     <input id="email_register" type="text" class="demoInputBox" name="mail">
-                    <label for="email_register">Email</>
+                    <label for="email_register">Email<label/>
                 </div>
                 <p>
                     <label for="birthday_register">Data urodzenia:</label>
@@ -154,58 +154,58 @@ session_start();
 
     </div>
 </div>
-
-
-<style type="text/css">
-    .error-message {
-        padding: 7px 10px;
-        background: #fff1f2;
-        border: #ffd5da 1px solid;
-        color: #d6001c;
-        border-radius: 4px;
-    }
-
-    .success-message {
-        padding: 7px 10px;
-        background: #cae0c4;
-        border: #c3d0b5 1px solid;
-        color: #027506;
-        border-radius: 4px;
-    }
-
-    .demo-table {
-
-        width: 30%;
-        border-spacing: initial;
-        margin: 2px 0px;
-        word-break: break-word;
-        table-layout: auto;
-        line-height: 1.8em;
-        color: #333;
-        border-radius: 4px;
-        padding: 20px 40px;
-    }
-
-    .demo-table td {
-        padding: 15px 0px;
-    }
-
-    .demoInputBox {
-        padding: 10px 30px;
-        border: #a9a9a9 1px solid;
-        border-radius: 4px;
-    }
-
-    .btnRegister {
-        padding: 10px 30px;
-        background-color: #3367b2;
-        border: 0;
-        color: #FFF;
-        cursor: pointer;
-        border-radius: 4px;
-        margin-left: 10px;
-    }
-</style>
+<!---->
+<!---->
+<!--<style type="text/css">-->
+<!--    .error-message {-->
+<!--        padding: 7px 10px;-->
+<!--        background: #fff1f2;-->
+<!--        border: #ffd5da 1px solid;-->
+<!--        color: #d6001c;-->
+<!--        border-radius: 4px;-->
+<!--    }-->
+<!---->
+<!--    .success-message {-->
+<!--        padding: 7px 10px;-->
+<!--        background: #cae0c4;-->
+<!--        border: #c3d0b5 1px solid;-->
+<!--        color: #027506;-->
+<!--        border-radius: 4px;-->
+<!--    }-->
+<!---->
+<!--    .demo-table {-->
+<!---->
+<!--        width: 30%;-->
+<!--        border-spacing: initial;-->
+<!--        margin: 2px 0px;-->
+<!--        word-break: break-word;-->
+<!--        table-layout: auto;-->
+<!--        line-height: 1.8em;-->
+<!--        color: #333;-->
+<!--        border-radius: 4px;-->
+<!--        padding: 20px 40px;-->
+<!--    }-->
+<!---->
+<!--    .demo-table td {-->
+<!--        padding: 15px 0px;-->
+<!--    }-->
+<!---->
+<!--    .demoInputBox {-->
+<!--        padding: 10px 30px;-->
+<!--        border: #a9a9a9 1px solid;-->
+<!--        border-radius: 4px;-->
+<!--    }-->
+<!---->
+<!--    .btnRegister {-->
+<!--        padding: 10px 30px;-->
+<!--        background-color: #3367b2;-->
+<!--        border: 0;-->
+<!--        color: #FFF;-->
+<!--        cursor: pointer;-->
+<!--        border-radius: 4px;-->
+<!--        margin-left: 10px;-->
+<!--    }-->
+<!--</style>-->
 <!--==============================footer=================================-->
 <footer>
     <div class="container_12">
@@ -228,11 +228,6 @@ session_start();
 <script>
     $(document).ready(function () {
         $('select').material_select();
-    });
-
-    $('.datepicker').pickadate({
-        selectMonths:true,
-        selectYears: 15
     });
 </script>
 </body>
